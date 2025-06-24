@@ -12,7 +12,6 @@ import {
   Menu as MenuIcon,
   Home as HomeIcon,
   AccountCircle as AccountCircleIcon,
-  ShoppingCart as ShoppingCartIcon,
 } from "@mui/icons-material";
 import LogoutIcon from "@mui/icons-material/Logout";
 import UserProfilePopup from "../userDetails/UserDetails";
@@ -112,7 +111,7 @@ const Layout: React.FC<MainLayoutProps> = ({ children }) => {
                 textAlign: "center",
               }}
             >
-              תבנית
+              MUSIC SAMPLER 🎸
             </Typography>
 
             <Box sx={{ display: "flex", alignItems: "center" }}>
@@ -123,14 +122,6 @@ const Layout: React.FC<MainLayoutProps> = ({ children }) => {
                 sx={{ color: "white" }}
               >
                 <HomeIcon />
-              </IconButton>
-
-              <IconButton
-                color="inherit"
-                disabled={isLoginRoute || isRegisterRoute}
-                sx={{ color: "white" }}
-              >
-                <ShoppingCartIcon />
               </IconButton>
 
               <IconButton
