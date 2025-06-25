@@ -49,9 +49,6 @@ export const editUser = createAsyncThunk("users/editUser", async (user: Partial<
       },
     });
     if (response.data) {
-      console.log(response.data);
-      
-      console.log("user updated");
       return true;
     }
     return false;

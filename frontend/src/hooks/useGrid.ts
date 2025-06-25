@@ -1,15 +1,24 @@
-import { useEffect, useState } from 'react';
-import { playSampleNote } from './useSampler';
+import { useEffect, useState } from "react";
+import { getSound } from "../api/getSound";
+import { playNote } from "../utils/playSound";
 
-const NOTE_ROWS = [
-  'C4', 'D4', 'E4', 'F4',
-  'G4', 'A4', 'B4', 'C5',
-];
+const NOTE_ROWS = ["A", "B", "C", "D", "E", "F", "G", "H"];
 const TOTAL_COLUMNS = 16;
 
-export function useGridPlayback(instrumentName: string, isPlaying: boolean, bpm: number) {
+const createEmptyGrid = () =>
+  Array(NOTE_ROWS.length)
+    .fill(null)
+    .map(() => Array(TOTAL_COLUMNS).fill(false));
+
+export function useGridPlayback(
+  instrumentName: string,
+  isPlaying: boolean,
+  bpm: number
+) {
   const [noteGrid, setNoteGrid] = useState<boolean[][]>(
-    Array(NOTE_ROWS.length).fill(null).map(() => Array(TOTAL_COLUMNS).fill(false))
+    Array(NOTE_ROWS.length)
+      .fill(null)
+      .map(() => Array(TOTAL_COLUMNS).fill(false))
   );
   const [activeColumn, setActiveColumn] = useState(0);
 
@@ -17,14 +26,15 @@ export function useGridPlayback(instrumentName: string, isPlaying: boolean, bpm:
     if (!isPlaying) return;
 
     const interval = setInterval(() => {
-      NOTE_ROWS.forEach((note, rowIndex) => {
+      NOTE_ROWS.forEach(async (note, rowIndex) => {
         if (noteGrid[rowIndex][activeColumn]) {
-          playSampleNote(instrumentName, note);
+          const blob = await getSound(note);
+          playNote(blob);
         }
       });
 
       setActiveColumn((prevCol) => (prevCol + 1) % TOTAL_COLUMNS);
-    }, 60_000 / bpm); // Convert BPM to interval (ms)
+    }, 60_000 / bpm);
 
     return () => clearInterval(interval);
   }, [isPlaying, bpm, activeColumn, noteGrid, instrumentName]);
@@ -38,9 +48,15 @@ export function useGridPlayback(instrumentName: string, isPlaying: boolean, bpm:
     setNoteGrid(updatedGrid);
   };
 
+  const resetGrid = () => {
+    setNoteGrid(createEmptyGrid());
+    setActiveColumn(0);
+  };
+
   return {
     grid: noteGrid,
     toggleCell: toggleNoteCell,
-    currentCol: activeColumn
+    currentCol: activeColumn,
+    resetGrid,
   };
 }

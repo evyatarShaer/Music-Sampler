@@ -4,6 +4,7 @@ import cors from "cors";
 import connectToDB from "./database/connecetToDB";
 import userRouter from './routes/userRoute';
 import managerRouter from './routes/managerRoute';
+import guitarRoute from './routes/guitarRoute';
 
 dotenv.config();
 
@@ -17,7 +18,7 @@ const PORT = process.env.PORT || 3000;
 
 connectToDB();
 
-app.use('/app', userRouter);
+app.use('/app', userRouter, guitarRoute);
 app.use('/manager', managerRouter);
 
 // Error handling middleware

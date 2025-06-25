@@ -1,3 +1,5 @@
+import { Box } from "@mui/material";
+
 type CellProps = {
   isActive: boolean;
   isCurrent: boolean;
@@ -6,23 +8,24 @@ type CellProps = {
 
 const Cell = ({ isActive, isCurrent, onClick }: CellProps) => {
   const backgroundColor = isCurrent
-    ? isActive ? '#00f' : '#99f'
-    : isActive ? '#0f0' : '#ccc';
+    ? isActive ? "#00f" : "#99f"
+    : isActive ? "#0f0" : "#ccc";
 
   return (
-    <div
+    <Box
       onClick={onClick}
-      style={{
+      sx={{
         width: 38,
         height: 38,
-        backgroundColor,
-        cursor: 'pointer',
-        borderRadius: 4,
-        transition: 'background-color 0.2s ease',
-        border: '1px solid #999'
+        bgcolor: backgroundColor,
+        cursor: "pointer",
+        borderRadius: 1,
+        border: "1px solid #999",
+        transition: "background-color 0.2s ease",
+        boxSizing: "border-box",
       }}
     />
   );
-}
+};
 
 export default Cell;

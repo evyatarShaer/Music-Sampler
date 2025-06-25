@@ -80,7 +80,6 @@ const Login: React.FC = () => {
         email: "",
         password: "",
       });
-      console.log(error);
     }
   }, [error]);
 

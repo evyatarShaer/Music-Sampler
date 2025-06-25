@@ -42,7 +42,7 @@ const Layout: React.FC<MainLayoutProps> = ({ children }) => {
 
   const goToHome = () => {
     navigate("/home");
-  }
+  };
 
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -59,14 +59,13 @@ const Layout: React.FC<MainLayoutProps> = ({ children }) => {
     <Box sx={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
       <AppBar
         position="static"
-        color="primary"
         elevation={1}
         sx={{
-          backgroundColor: theme.palette.primary.main,
+          backgroundColor: '#AEDFF7',
           borderBottom: `1px solid ${theme.palette.divider}`,
         }}
       >
-        <Container maxWidth={false} >
+        <Container maxWidth={false}>
           <Toolbar
             dir="rtl"
             disableGutters
@@ -83,7 +82,7 @@ const Layout: React.FC<MainLayoutProps> = ({ children }) => {
                 disabled={isLoginRoute || isRegisterRoute}
                 sx={{
                   ml: 2,
-                  color: "white",
+                  color: "#1F1F1F",
                 }}
               >
                 <LogoutIcon />
@@ -96,7 +95,7 @@ const Layout: React.FC<MainLayoutProps> = ({ children }) => {
                 onClick={handleMenuToggle}
                 sx={{
                   ml: 2,
-                  color: "white",
+                  color: "#1F1F1F",
                 }}
               >
                 <MenuIcon />
@@ -107,11 +106,11 @@ const Layout: React.FC<MainLayoutProps> = ({ children }) => {
               variant="h6"
               sx={{
                 fontWeight: "bold",
-                color: "white",
+                color: "#1F1F1F",
                 textAlign: "center",
               }}
             >
-              MUSIC SAMPLER 🎸
+              MUSIC SAMPLER
             </Typography>
 
             <Box sx={{ display: "flex", alignItems: "center" }}>
@@ -119,7 +118,7 @@ const Layout: React.FC<MainLayoutProps> = ({ children }) => {
                 color="inherit"
                 disabled={isLoginRoute || isRegisterRoute}
                 onClick={goToHome}
-                sx={{ color: "white" }}
+                sx={{ color: "#1F1F1F" }}
               >
                 <HomeIcon />
               </IconButton>
@@ -130,7 +129,7 @@ const Layout: React.FC<MainLayoutProps> = ({ children }) => {
                 disabled={isLoginRoute || isRegisterRoute}
                 sx={{
                   cursor: "pointer",
-                  color: "white",
+                  color: "#1F1F1F",
                 }}
               >
                 <AccountCircleIcon />
@@ -167,7 +166,7 @@ const Layout: React.FC<MainLayoutProps> = ({ children }) => {
       >
         <Container maxWidth="lg">
           <Typography variant="body2" color="text.secondary" align="center">
-            © 2024 כל הזכויות שמורות
+            © 2024
           </Typography>
         </Container>
       </Box>

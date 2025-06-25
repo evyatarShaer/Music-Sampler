@@ -22,7 +22,6 @@ export const registerUser = async (req: Request, res: Response) => {
     //await sendEmail(newUser.email);
     res.status(201).json(newUser);
   } catch (error) {
-    console.log("regiater failed", error);
     res.status(400).json("Error registering user");
   }
 };

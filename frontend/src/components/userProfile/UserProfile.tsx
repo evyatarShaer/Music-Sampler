@@ -37,11 +37,9 @@ const UserProfile: React.FC = () => {
     const resultAction = await dispatch(editUser(newUser));
   
     if (editUser.fulfilled.match(resultAction)) {
-      console.log("user updated successfully", resultAction.payload);
       setSeverity(true);
       setOpenSnackbar(true);
     } else {
-      console.error("user update failed", resultAction);
       setSeverity(false);
       setOpenSnackbar(true);
     }
